@@ -1,0 +1,47 @@
+﻿@model IEnumerable<DemoGuid.Models.Department>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-decoration-underline">Index</h1>
+
+<p>
+   @*  <a asp-action="Create">Create New</a> *@
+    <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Create")'">Create New</button>
+</p>
+<table class="table">
+    <thead>
+       
+        <tr class="p-3 mb-2 bg-success text-white shadow-lg p-3 mb-5">
+           @*  <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th> *@
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+            <tr class="text-success shadow-lg p-3 mb-5 ">
+            <td>
+               @*  @Html.DisplayFor(modelItem => item.Id) *@
+                    @Html.Hidden("Id", item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+               @*  @Html.ActionLink("Edit", "Edit", new { id=item.Id }) | *@
+               @*  @Html.ActionLink("Details", "Details", new { id=item.Id }) | *@
+               @*  @Html.ActionLink("Delete", "Delete", new { id=item.Id }) *@
+                    <button type="button" class="btn btn-warning" onclick="location.href='@Url.Action("Edit", new { id = item.Id })'">Edit</button>
+                    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Details", new { id = item.Id })'">Details</button>
+                    <a href="~/Departments/Verwijder?id=@item.Id" id="deleteBtn" class="btn bg-danger mr-1" onclick="return confirm('Are you sure you want to delete?');"><i class="fas fa-trash-alt text-white"></i>Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

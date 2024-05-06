@@ -1,0 +1,31 @@
+﻿@model ViewModelDemo.Models.NewModels.ProductSupplierViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<h1>Supplier</h1>
+<ul>
+    @foreach(var item in Model.Suppliers)
+    {
+        <li>
+            @item.Name
+        </li>
+    }
+    <h1>Products</h1>
+    @foreach(var prod in Model.Products)
+    {
+        <li>
+            @prod.Name @prod.Price
+        </li>
+        
+    }
+</ul>
+
+    </tbody>
+</table>
